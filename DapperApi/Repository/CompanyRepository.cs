@@ -81,6 +81,7 @@ namespace DapperApi.Repository
             }
         }
 
+
         public async Task DeleteCompany(int id)
         {
             var query = "DELETE FROM Companies WHERE Id = @Id";
@@ -91,11 +92,12 @@ namespace DapperApi.Repository
             }
         }
 
-        public async Task<Company> GetCompanyByEmployeeId(int id)
+
+        public async Task<Company> GetCompanyByEmployeeId(int id) //This function is for calling stored procedures
         {
-            var procedureName = "ShowCompanyForProvidedEmployeeId";
+            var procedureName = "ShowCompanyForProvidedEmployeeId";//This stored procedure uses the employee id to get the company details.
             var parameters = new DynamicParameters();
-            parameters.Add("Id", id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("Id", id, DbType.Int32, ParameterDirection.Input);   // "Id" is the name of the parameter, while id is the value.
 
             using (var connection = _context.CreateConnection())
             {
@@ -104,8 +106,9 @@ namespace DapperApi.Repository
 
                 return company; 
             }
-
         }
+
+
 
         public async Task<Company> GetCompanyEmployeesMultipleResults(int id)
         {
@@ -120,6 +123,7 @@ namespace DapperApi.Repository
                 return company;
             }
         }
+
 
 
         public async Task<List<Company>> GetCompaniesEmployeesMultipleMapping()

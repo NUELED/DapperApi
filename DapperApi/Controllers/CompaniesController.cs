@@ -105,7 +105,7 @@ namespace DapperApi.Controllers
         }
 
 
-        [HttpGet("ByEmployeeId/{id}")]
+        [HttpGet("ByEmployeeId/{id}")] // This controller uses stored procedures!
         public async Task<IActionResult> GetCompanyForEmployee(int id)
         {
             try
