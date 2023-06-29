@@ -3,6 +3,7 @@ using DapperApi.Context;
 using DapperApi.Contracts;
 using DapperApi.Dto;
 using DapperApi.Entities;
+using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace DapperApi.Repository
@@ -11,6 +12,18 @@ namespace DapperApi.Repository
     {
         private readonly DapperContext _context;
         public CompanyRepository(DapperContext context) => _context = context;
+
+
+       //The commented codes below is another way of connecting to the database!
+
+       //So you can use "db" instead of "connection"
+       //private IDbConnection db;
+
+       //public CompanyRepository(IConfiguration configuration) 
+       //     => this.db = new SqlConnection(configuration.GetConnectionString("SqlConnection"));
+
+
+
 
         public async Task<IEnumerable<Company>> GetCompanies()
         {
@@ -108,7 +121,8 @@ namespace DapperApi.Repository
             }
         }
 
-
+        
+       
 
         public async Task<Company> GetCompanyEmployeesMultipleResults(int id)
         {
